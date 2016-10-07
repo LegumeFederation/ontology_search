@@ -134,28 +134,28 @@ function ontology_search_getSibilings($id)
         }
         else
         {
-          $temp=$allSibilings;
-          while($temp->next!=NULL)
-          {
-            $temp = $temp->next;
-          }
-          $temp->next=$childrenAtLevel1;
+          if ($temp=$allSibilings) {
+            while($temp->next!=NULL)
+            {
+              $temp = $temp->next;
+            }
+            $temp->next=$childrenAtLevel1;
+          }//siblings exist
         }
         $out=$sta->pop();
-      }
+      }//$distanceFromGivenNode ==1
       else
       {
         $out=$sta->pop();
       } 
     }
-  return $allSibilings;
+    return $allSibilings;
   }
   else
   {
     drupal_set_message("chado is not installed");
     return null;
   }
-
 }
 // first function for sibilings gets the first parent
 
